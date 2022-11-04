@@ -6,7 +6,7 @@ NodeJS backend app with ExpressJS.
 
 In the project directory, you can run:
 
-### `npm init`
+### `npm install`
 
 Install dependencies
 

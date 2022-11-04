@@ -6,7 +6,7 @@ App created with create-react-app. Uses typescript.
 
 In the project directory, you can run:
 
-### `npm init`
+### `npm install`
 
 Install dependencies
 
