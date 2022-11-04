@@ -1,5 +1,4 @@
 import React from "react";
-import TextComponent from "../components/TextComponent";
 import RestaurantComponent from "../components/RestaurantComponent";
 import OngoingOrderSelectionComponent from "../components/OngoingOrderSelectionComponent";
 
