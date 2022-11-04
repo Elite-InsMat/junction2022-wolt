@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import "./BlueButtonStyles.scss"
 
 type Props = {
-    text : string
+    text : string,
+    onClick : () => void
 }
 
-const BlueButton = ({ text } : Props) =>  {
+const BlueButton = ({ text, onClick } : Props) =>  {
 
     return(
         <div>
-            <button className="bluebutton">
+            <button className="bluebutton" onClick={() => onClick}>
                 <span className="text">
                     {text}
                 </span>
