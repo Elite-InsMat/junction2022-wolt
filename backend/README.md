@@ -22,3 +22,10 @@ You will also see any lint errors in the console.
 
 Runs eslint
 
+
+### .env
+
+`MERCHANT_ID=
+MONGO_URI=
+PORT=`
+
