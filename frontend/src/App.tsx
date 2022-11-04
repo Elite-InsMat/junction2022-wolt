@@ -1,13 +1,14 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom'
 import TestPage from './pages/testpage';
+import BlueButton from './components/BlueButton/BlueButton'
 
 const App = () => {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" caseSensitive={false} element={<TestPage />} />
-      </Routes>
+      <div>
+        <BlueButton text='Join this order'/>
+      </div>
     </div >
   );
 }
