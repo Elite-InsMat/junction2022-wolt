@@ -1,0 +1,37 @@
+.container{
+    position: relative;
+    width: 777px;
+    height: 124px;
+    display: flex;
+    border-radius: 13px;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgray;
+    span{
+        color: black;
+        font-size: 20pt;
+        margin-top: 23px;
+        margin-left: 45px;
+    }
+    p{
+        color: grey;
+        font-size: 16px;
+        margin-top: 8px;
+        margin-left: 45px;
+        max-width: 400px;
+        overflow-wrap: break-word;
+    }
+    img{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30%;
+        height: 100%;
+        z-index: 0;
+        border-bottom-right-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+}
