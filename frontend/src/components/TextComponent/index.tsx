@@ -1,16 +1,16 @@
 import React from 'react';
-import './textComponentStyles.css';
+import './textComponentStyles.scss';
 
 
 type Props = {
     text: string
-
 }
 
 const TextComponent = ({ text }: Props) => {
     return (
-        <div className='text'>
-            <span>{text}</span>
+        <div>
+            <span className='text'>{text}</span>
+            <span className='asd'>asdsad</span>
         </div>
     );
 }
