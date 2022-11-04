@@ -26,6 +26,6 @@ Runs eslint
 ### .env
 
 MERCHANT_ID= \
-MONGO_URI= \ 
+MONGO_URI= \
 PORT= \
 
