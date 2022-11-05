@@ -49,8 +49,7 @@ const OrderPage = () => {
                         {/* TODO: Make this dynamic with order status */}
                         <h3>Your order is waiting for Participants</h3>
                         <p>
-                            We&apos;re searching for participants near you who are interested
-                            in ordering from the same place as you, so you can save on delivery. If you&apos;re in a hurry, you can skip the wait and pay for the delivery in full
+                            People near you are ordering from these restaurants. Order from one of these restaurants to save in delivery costs.
                         </p>
                     </div>
                     <div className="order-info-card-addresses">
