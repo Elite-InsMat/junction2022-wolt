@@ -2,6 +2,15 @@ import { Collection } from 'mongodb'
 
 export interface DatabaseCollections{
     restaurants: Collection<Restaurant>,
+    orders: Collection<Order>
+}
+
+interface User {
+    _id: string,
+    location: {
+        lat: number,
+        long: number
+    }
 }
 
 interface Restaurant {
@@ -14,5 +23,13 @@ interface Restaurant {
             lat: number,
             long: number
         }
+    }
+}
+
+interface Order {
+    _id:string,
+    orderStatus: string,
+    orderedItems: {
+        [userId:string] : string []
     }
 }

@@ -8,6 +8,8 @@ export const database = {
     mongoUri: process.env.MONGO_URI || '',
     dbName: 'wolt',
     collections: {
-        restaurants: 'restaurants'
+        restaurants: 'restaurants',
+        orders:'orders',
+        users:'users'
     }
 }
