@@ -27,3 +27,52 @@ to generate mock data, navigate to [json-generator](https://json-generator.com/)
   }
 ]
 ```
+
+```
+[
+  {
+    _id: '{{objectId()}}',
+    name: 'John Doe',
+    location: {
+      friendlyName: "Pispalantie 14, 20540 Turku",
+      coordinates: {
+        lat: '60.460660',
+        long: '22.285900'
+      }
+  	}
+  },
+    {
+    _id: '{{objectId()}}',
+    name: 'Iplax Doe',
+    location: {
+      coordinates: {
+        friendlyName: "Pispalantie 13, 20540 Turku",
+        lat: '60.463660',
+        long: '22.225900'
+      }
+  	}
+  },
+    {
+    _id: '{{objectId()}}',
+    name: 'Joni Inkivaari',
+    location: {
+      coordinates: {
+        friendlyName: "Pispalantie 12, 20540 Turku",
+        lat: '60.461660',
+        long: '22.245900'
+      }
+  	}
+  },
+    {
+    _id: '{{objectId()}}',
+    name: '',
+    location: {
+      friendlyName: "Pispalantie 10, 20540 Turku",
+      coordinates: {
+        lat: '60.460660',
+        long: '22.275900'
+      }
+  	}
+  }
+]
+```
