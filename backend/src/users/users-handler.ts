@@ -3,7 +3,7 @@ import { getUser } from "./users-service";
 
 export const userRouter = express.Router();
 
-userRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
+userRouter.post('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const userName = req.body.userName
         if(!userName) {
