@@ -68,10 +68,10 @@ const OrderPage = () => {
 
             <div className="order-page-map">
                 <Map restaurantLocation={{
-                    lat: 70,
-                    lng: 40
+                    lat: 60.17,
+                    lng: 24.95
                 }} targetLocation={{
-                    lat: 60.1699,
+                    lat: 61.1699,
                     lng: 24.9384
                 }} />
             </div>

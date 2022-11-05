@@ -18,6 +18,7 @@ const Map = ({ restaurantLocation, targetLocation }: Props) => {
     const [flag, setFlag] = useState(false)
 
 
+
     const styles = [{
         "featureType": "all",
         "elementType": "labels.text.fill",
@@ -226,29 +227,38 @@ const Map = ({ restaurantLocation, targetLocation }: Props) => {
         }
 
         if (map) {
-            new google.maps.Circle({
-                strokeColor: "#FF0000",
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: "#FF0001",
-                fillOpacity: 0.2,
-                map: map,
-                center: targetLocation,
-                radius: 200
-            })
-
             new google.maps.Marker({
                 position: restaurantLocation,
                 map: map,
+                icon: "../images/icon.png"
             })
 
             new google.maps.Polyline({
                 path: [restaurantLocation, targetLocation],
-                strokeColor: '#FF0000',
+                strokeColor: '#009DE0',
                 strokeOpacity: 1.0,
-                strokeWeight: 2,
+                strokeWeight: 4,
                 map: map,
             })
+            new google.maps.Circle({
+                strokeColor: "#009DE0",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#009DE0",
+                fillOpacity: 0.2,
+                map: map,
+                center: targetLocation,
+                radius: 200,
+            })
+
+
+            const bounds = new google.maps.LatLngBounds();
+            bounds.extend(restaurantLocation)
+            bounds.extend(targetLocation)
+            map.fitBounds(bounds)
+
+
+
 
 
         }
