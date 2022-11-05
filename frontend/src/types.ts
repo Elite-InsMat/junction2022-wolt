@@ -10,3 +10,10 @@ export interface Restaurant {
         }
     }
 }
+
+export interface Order {
+    _id : number,
+    name : string,
+    text : string,
+    img : string,
+}
