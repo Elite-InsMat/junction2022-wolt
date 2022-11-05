@@ -10,14 +10,14 @@ type Props = {
 
 const OngoingOrderSelectionComponent = ({ orderName, text, img }: Props) => {
     return (
-        <div className='container'>
+        <div className='order-selection-container'>
             <span>
                 {orderName}
             </span>
             <p>
                 {text}
             </p>
-            <img src={img}/>
+            <img src={img} />
 
         </div>
     );
