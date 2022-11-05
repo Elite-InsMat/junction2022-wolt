@@ -1,5 +1,7 @@
 import React from "react";
 import OngoingOrderSelectionComponent from "../components/OngoingOrderSelectionComponent";
+import Layout from "../components/Layout";
+import TextBoxRounded from "../components/TextBoxRounded/TextBoxRounded"
 import { InformationBlock } from "../components/InformationBlock";
 import Map from "../components/Map/Map";
 

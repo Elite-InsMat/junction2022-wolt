@@ -1,10 +1,14 @@
-import express from "express";
+import express, { NextFunction, Request, Response  } from 'express';
 import { getRestaurants } from "./restaurant-service";
 
 export const restaurantRouter = express.Router();
 
-restaurantRouter.get('/', async (req, res) => {
+restaurantRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
+  try {
     const result = await getRestaurants()
-    console.log(result)
     res.send(result)
-  })
+  } catch (err) {
+    console.log(err)
+    next(err)
+  }
+})

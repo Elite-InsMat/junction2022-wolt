@@ -13,6 +13,9 @@ export const startDb = async () => {
 
 export const getCollections = async(mc:MongoClient): Promise<DatabaseCollections> => {
     return {
-        restaurants: mc.db(database.dbName).collection(database.collections.restaurants)
+        restaurants: mc.db(database.dbName).collection(database.collections.restaurants),
+        orders: mc.db(database.dbName).collection(database.collections.orders),
+        items: mc.db(database.dbName).collection(database.collections.items),
+        users: mc.db(database.dbName).collection(database.collections.users)
     }
 }

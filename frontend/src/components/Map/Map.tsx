@@ -260,7 +260,7 @@ const Map = ({ restaurantLocation, targetLocation }: Props) => {
 
     return (
         <Wrapper apiKey="AIzaSyCERD97-1_qC1K4N-oBYVHlol-W49kAc_s">
-            <div style={{ height: "600px", width: "700px" }} ref={ref} />
+            <div style={{ height: "600px", width: "100%" }} ref={ref} />
             {flag && <span></span>}
         </Wrapper>
 
