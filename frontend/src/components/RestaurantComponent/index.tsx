@@ -9,14 +9,14 @@ type Props = {
 
 const RestaurantComponent = ({ text, img }: Props) => {
     return (
-        <div className='container'>
+        <div className='restaurant-component-container'>
             <span className='title'>
                 Restaurant
             </span>
             <span className='name'>
                 {text}
             </span>
-            <img src={img}/>
+            <img src={img} />
 
         </div>
     );
