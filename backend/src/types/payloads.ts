@@ -1,4 +1,4 @@
-export interface OrderPayload {
+export interface WoltOrderPayload {
     pickup: {
       location: {
         formatted_address: string,
@@ -57,21 +57,33 @@ export interface OrderPayload {
     scheduled_dropoff_time?: number
 }
 
-export interface ItemsPayload {
-    restaurantId: string
+export interface WoltFeePayLoad {
+  pickup: {
+      location: {
+          lat:number,
+          long:number
+      }
+  },
+  dropoff: {
+      location: {
+          lat:number,
+          long:number
+      }
+  }
 }
 
-export interface FeePayLoad {
-    pickup: {
-        location: {
-            lat:number,
-            long:number
-        }
-    },
-    dropoff: {
-        location: {
-            lat:number,
-            long:number
-        }
-    }
+export interface CreateOrderPayload {
+  public: boolean,
+  expires?: number,
+  host: string
+  items: string []
+}
+
+export interface JoinOrderPayload {
+  userId: string,
+  orderId: string,
+  items: string []
+}
+export interface ItemsPayload {
+    restaurantId: string
 }

@@ -40,7 +40,11 @@ export interface Item {
 
 export interface Order {
     _id:string,
-    orderStatus: string,
+    host: string,
+    orderStatus: {
+        public: boolean,
+        expires?: number
+    },
     orderedItems: {
         [userId:string] : string []
     }
