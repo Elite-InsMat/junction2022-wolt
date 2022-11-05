@@ -53,11 +53,6 @@ const OrderPage = () => {
                         </p>
                     </div>
                     <div className="order-info-card-addresses">
-                        {orders.map((order) => <OngoingOrderSelectionComponent 
-                             orderName={order.name}
-                                text={order.text}
-                                img={order.img}
-                                key={order._id}/>)}
                     </div>
 
                     <div className="number-component-container">
