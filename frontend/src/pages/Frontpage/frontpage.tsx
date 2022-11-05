@@ -54,7 +54,7 @@ const TestPage = () => {
                         <h1>Ongoing orders near you</h1>
                     </div>
                     <div>
-                        {onGoing.map((element) => (<RestaurantComponent key={element.pickup._id} text={element.pickup.name} img={element.pickup.coverImage}/>))}
+                        {onGoing.map((element) => (<RestaurantComponent key={element.pickup._id} text={element.pickup.name} img={element.pickup.coverImage} onGoingOrders={onGoing.length}/>))}
                     </div>
     
                     <div>

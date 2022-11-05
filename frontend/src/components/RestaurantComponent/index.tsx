@@ -6,10 +6,11 @@ import './styles.scss';
 type Props = {
     text: string,
     img: string,
+    onGoingOrders? : number,
     targetLink?: string
 }
 
-const RestaurantComponent = ({ text, img, targetLink }: Props) => {
+const RestaurantComponent = ({ text, img, targetLink, onGoingOrders }: Props) => {
 
     const navigate = useNavigate();
     const handleOnClick = useCallback(() => navigate(targetLink ?? "/", { replace: true }), [navigate]);
@@ -23,7 +24,9 @@ const RestaurantComponent = ({ text, img, targetLink }: Props) => {
                 {text}
             </span>
             <img src={img} />
-
+            <div className='participants'>
+                {onGoingOrders} {onGoingOrders == 1 ? 'person is': 'people are'} ordering near you.
+            </div>
         </div>
     );
 }
