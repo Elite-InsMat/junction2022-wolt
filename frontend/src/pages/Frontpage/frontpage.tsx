@@ -17,57 +17,60 @@ const TestPage = () => {
         // socket.on('test1', (d: any) => {
         //     console.log(d)
         // })
-      async function getData() {
-        try{
-            const recipeData = await axios.get('http://localhost:8232/restaurants');
-            setRestaurants(recipeData.data);
-            const userData = await axios.post('http://localhost:8232/user', {userName : "John Doe"});
-            const onGoingData = await axios.post('http://localhost:8232/orders/ongoing', {userId : userData.data._id});
-            setOnGoing(onGoingData.data);
-            console.log(onGoingData.data);
-            
+        async function getData() {
+            try {
+                const recipeData = await axios.get('http://localhost:8232/restaurants');
+                setRestaurants(recipeData.data);
+                const userData = await axios.post('http://localhost:8232/user', { userName: "John Doe" });
+                const onGoingData = await axios.post('http://localhost:8232/orders/ongoing', { userId: userData.data._id });
+                setOnGoing(onGoingData.data);
+                console.log(onGoingData.data);
+
+            }
+            catch (err: any) {
+                setError(err.message);
+            }
         }
-        catch(err: any){
-          setError(err.message);
-        }   
-      }
-      getData()
+        getData()
     }, []);
 
-      // useEffect(() => {
-        // const socket = (window as any).io('http://localhost:3002');
-        // socket.on('test1', (d: any) => {
-        //     console.log(d)
-        // })
+    // useEffect(() => {
+    // const socket = (window as any).io('http://localhost:3002');
+    // socket.on('test1', (d: any) => {
+    //     console.log(d)
+    // })
     // }, []);
 
-        if (error){
-            return <p>{error}</p>
-        }
-        else if (!restaurants){
-            return <p>Loading restaurants...</p>
-        }
-        else{
-            return (
+    if (error) {
+        return <p>{error}</p>
+    }
+    else if (!restaurants) {
+        return <p>Loading restaurants...</p>
+    }
+    else {
+        return (
+            <div>
                 <div>
+                    <h1>Ongoing orders near you</h1>
+                </div>
+                <div className="center-div">
+
                     <div>
-                        <h1>Ongoing orders near you</h1>
+                        {onGoing.map((element) => (<RestaurantComponent key={element.pickup._id} text={element.pickup.name} img={element.pickup.coverImage} />))}
                     </div>
-                    <div>
-                        {onGoing.map((element) => (<RestaurantComponent key={element.pickup._id} text={element.pickup.name} img={element.pickup.coverImage}/>))}
-                    </div>
-    
-                    <div>
-                        <h1>Find other amazing restaurants</h1>
-                        <div className="center-div">
-                            <div className="frontpage-restaurant-container">
-                                {restaurants.map((restaurant) => (<RestaurantComponent key={restaurant._id} text={restaurant.name} img={restaurant.coverImage} />))}
-                            </div>
+                </div>
+
+                <div>
+                    <h1>Find other amazing restaurants</h1>
+                    <div className="center-div">
+                        <div className="frontpage-restaurant-container">
+                            {restaurants.map((restaurant) => (<RestaurantComponent key={restaurant._id} text={restaurant.name} img={restaurant.coverImage} />))}
                         </div>
                     </div>
                 </div>
-            )
-        }
+            </div>
+        )
     }
+}
 
 export default TestPage;
