@@ -16,7 +16,7 @@ const FrontPage = () => {
         // })
         async function getRecipeData() {
             try {
-                const json = await axios.get('http://35.228.130.34/:8232/restaurants');
+                const json = await axios.get('http://35.228.130.34:8232/restaurants');
                 setRestaurants(json.data);
             }
             catch (err: any) {
