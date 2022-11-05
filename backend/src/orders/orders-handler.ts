@@ -1,10 +1,10 @@
 import express, { NextFunction, Request, Response  } from 'express';
 import { CreateOrderPayload, JoinOrderPayload } from '../types/payloads';
-import { getUserOrders, createNewOrder, joinOrder } from "./orders-service";
+import { getUserOrders, createNewOrder, joinOrder, getOngoingOrders } from "./orders-service";
 
 export const orderRouter = express.Router();
 
-orderRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
+orderRouter.get('/own', async (req: Request, res: Response, next: NextFunction) => {
   try {
     if(!req.body.userId) {
       res.status(400).send('Missing userId')
@@ -32,6 +32,21 @@ orderRouter.post('/create', async (req: Request, res: Response, next: NextFuncti
     const io = req.app.get('socket.io')
 
   } catch (err) {
+    console.log(err)
+    next(err)
+  }
+})
+
+orderRouter.get('/ongoing', async (req: Request, res: Response, next: NextFunction) => {
+  try{
+    const userId = req.body.userId
+    if(!userId) {
+      res.status(400).send('Missing userId')
+    }
+
+    const orders = getOngoingOrders(userId)
+    
+  } catch(err) {
     console.log(err)
     next(err)
   }

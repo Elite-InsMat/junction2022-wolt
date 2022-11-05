@@ -2,11 +2,16 @@ import { ObjectId } from "mongodb";
 import axios from 'axios'
 import { collections } from "../app"
 import { Order } from "../types/database";
-import { CreateOrderPayload, JoinOrderPayload, WoltFeePayLoad } from "../types/payloads";
+import { CreateOrderPayload, JoinOrderPayload } from "../types/payloads";
 import { wolt } from "../config";
 
 export const getUserOrders = async (userId:string) => {
     return await collections.orders.find( { _id: userId }).toArray();
+}
+
+export const getOngoingOrders = async (userId:string) => {
+    const userLocation = (await collections.users.findOne({_id:userId}))?.location
+    const allOrders = await collections.orders.find().toArray()
 }
 
 export const createNewOrder = async (payload: CreateOrderPayload) => {
