@@ -1,5 +1,5 @@
 const middlePointCalculator = (coordinates : Array<Array<number>>) => {
-    let middlePoint = [0.0, 0.0];
+    const middlePoint = [0.0, 0.0];
     coordinates.forEach((coord) => {
         console.log(coord);
         middlePoint[0] += coord[0];

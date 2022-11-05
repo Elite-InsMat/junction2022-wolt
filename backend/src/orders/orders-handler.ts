@@ -1,17 +1,16 @@
 import express, { NextFunction, Request, Response  } from 'express';
 import { CreateOrderPayload, JoinOrderPayload } from '../types/payloads';
-import { getOrders, createNewOrder, joinOrder } from "./orders-service";
+import { getUserOrders, createNewOrder, joinOrder } from "./orders-service";
 
 export const orderRouter = express.Router();
 
 orderRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
-
     if(!req.body.userId) {
       res.status(400).send('Missing userId')
       return
     }
-      const result = await getOrders(req.body.userId)
+      const result = await getUserOrders(req.body.userId)
       res.send(result)
 
   } catch (err) {

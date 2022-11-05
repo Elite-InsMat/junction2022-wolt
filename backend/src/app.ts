@@ -9,6 +9,7 @@ import { DatabaseCollections } from './types/database';
 import http from 'http';
 import cors from 'cors';
 import { userRouter } from './users/users-handler';
+import bodyParser from 'body-parser';
 
 export class BadRequestError extends Error {}
 export let collections: DatabaseCollections;
@@ -26,16 +27,16 @@ const startServer = async () => {
 
   //start socket
   const io = new Server(server);
-  io.on('connected', () => {
-    console.log('Socket on!')
-  })
 
-  io.emit('new_order')
+  io.on('connection', () => {
+    console.log('a user connected');
+  });
 
   app.set('socket.io', io)
 
   //Middlewares
   app.use(cors())
+  app.use(bodyParser.json())
 
   //Routers
   app.use('/restaurants',restaurantRouter)
@@ -55,7 +56,7 @@ const startServer = async () => {
     }
   })
 
-  app.listen(port, () => {
+  server.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
 

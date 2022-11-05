@@ -1,9 +1,11 @@
 import { ObjectId } from "mongodb";
+import axios from 'axios'
 import { collections } from "../app"
 import { Order } from "../types/database";
-import { CreateOrderPayload, JoinOrderPayload } from "../types/payloads";
+import { CreateOrderPayload, JoinOrderPayload, WoltFeePayLoad } from "../types/payloads";
+import { wolt } from "../config";
 
-export const getOrders = async (userId:string) => {
+export const getUserOrders = async (userId:string) => {
     return await collections.orders.find( { _id: userId }).toArray();
 }
 
@@ -16,7 +18,8 @@ export const createNewOrder = async (payload: CreateOrderPayload) => {
         },
         orderedItems: {
             [payload.host]: payload.items
-        }
+        },
+        pickup: payload.restaurant
     }
 
     if(payload.public && payload.expires) {
@@ -47,4 +50,6 @@ export const joinOrder = async (payload: JoinOrderPayload) => {
             }
         }
     })
+
+    const newFee = axios.get(wolt.feeUrl,{ data: {} })
 }
