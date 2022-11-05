@@ -17,7 +17,7 @@ jobs:
   deploy:
     # The type of runner that the job will run on
     runs-on: self-hosted
-# Steps represent a sequence of tasks that will be executed as part of the job
+# Steps represent a seqence of tasks that will be executed as part of the job
     strategy:
       matrix:
         node-version: [18.x]
