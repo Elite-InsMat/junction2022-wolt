@@ -10,6 +10,7 @@ export const database = {
     collections: {
         restaurants: 'restaurants',
         orders:'orders',
-        users:'users'
+        users:'users',
+        items:'items'
     }
 }

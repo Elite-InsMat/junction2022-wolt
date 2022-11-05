@@ -3,6 +3,7 @@ import { Server } from "socket.io";
 import { port } from './config';
 import { getCollections, startDb } from './database';
 import { orderRouter } from './orders/orders-handler';
+import { itemRouter } from './items/items-handler';
 import { restaurantRouter } from './restaurants/restaurant-handler';
 import { DatabaseCollections } from './types/database';
 import http from 'http';
@@ -29,10 +30,11 @@ const startServer = async () => {
 
   //Middlewares
   app.use(cors())
-  
+
   //Routers
   app.use('/restaurants',restaurantRouter)
   app.use('/orders',orderRouter)
+  app.use('/items',itemRouter)
 
   app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
