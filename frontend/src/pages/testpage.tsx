@@ -1,7 +1,5 @@
 import React from "react";
 import OngoingOrderSelectionComponent from "../components/OngoingOrderSelectionComponent";
-import Layout from "../components/Layout";
-import TextBoxRounded from "../components/TextBoxRounded/TextBoxRounded"
 import { InformationBlock } from "../components/InformationBlock";
 import Map from "../components/Map/Map";
 
@@ -22,8 +20,8 @@ const TestPage = () => {
             </div>
 
             <Map restaurantLocation={{
-                lat: 70,
-                lng: 40
+                lat: 60.8,
+                lng: 24.95
             }} targetLocation={{
                 lat: 60.1699,
                 lng: 24.9384
