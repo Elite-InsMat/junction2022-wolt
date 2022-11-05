@@ -3,11 +3,15 @@ import OngoingOrderSelectionComponent from "../components/OngoingOrderSelectionC
 import Layout from "../components/Layout";
 import TextBoxRounded from "../components/TextBoxRounded/TextBoxRounded"
 import { InformationBlock } from "../components/InformationBlock";
+import Map from "../components/Map/Map";
+
 
 
 
 
 const TestPage = () => {
+
+
     return (
         <div>
             <OngoingOrderSelectionComponent orderName="Title" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel massa urna. Duis non mollis." img="https://i.media.fi/incoming/ujb6vi/7260078.jpg/alternates/FREE_1440/7260078.jpg" />
@@ -17,7 +21,13 @@ const TestPage = () => {
                 <InformationBlock title="Waiting For" value="4:30" />
             </div>
 
-
+            <Map restaurantLocation={{
+                lat: 70,
+                lng: 40
+            }} targetLocation={{
+                lat: 60.1699,
+                lng: 24.9384
+            }} />
         </div>
     )
 
