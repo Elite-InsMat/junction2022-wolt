@@ -6,8 +6,8 @@ import './frontpage.scss'
 
 
 const FrontPage = () => {
-const [restaurants, setRestaurants] = useState<Restaurant[]>([])
-const [error, setError] = useState<string | null>(null)
+    const [restaurants, setRestaurants] = useState<Restaurant[]>([])
+    const [error, setError] = useState<string | null>(null)
 
 useEffect(() => {
     // const socket = (window as any).io('http://localhost:3002');
@@ -24,15 +24,15 @@ useEffect(() => {
     }   
   }
 
-  getRecipeData()
-}, []);
-    if (error){
+        getRecipeData()
+    }, []);
+    if (error) {
         return <p>{error}</p>
     }
-    else if (!restaurants){
+    else if (!restaurants) {
         return <p>Loading restaurants...</p>
     }
-    else{
+    else {
         return (
             <div>
                 <div>
@@ -44,7 +44,7 @@ useEffect(() => {
                     <h1>Find other amazing restaurants</h1>
                     <div className="center-div">
                         <div className="frontpage-restaurant-container">
-                            {restaurants.map((restaurant) => (<RestaurantComponent key={restaurant._id} text={restaurant.name} img={restaurant.coverImage} />))}
+                            {restaurants.map((restaurant) => (<RestaurantComponent targetLink={`/restaurant?id=${restaurant._id}`} key={restaurant._id} text={restaurant.name} img={restaurant.coverImage} />))}
                         </div>
                     </div>
                 </div>
