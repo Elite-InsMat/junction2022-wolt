@@ -14,8 +14,12 @@ export const database = {
     }
 }
 
+export const costReduce = 0.5
+
 export const wolt = {
     key: process.env.API_TOKEN_KEY,
     baseUrl: process.env.API_BASEURL,
-    merchantId: process.env.MERCHANT_ID
+    merchantId: process.env.MERCHANT_ID,
+    orderUrl:`${process.env.API_BASEURL}merchants/${process.env.MERCHANT_ID}/delivery-order`,
+    feeUrl: `${process.env.API_BASEURL}merchants/${process.env.MERCHANT_ID}/delivery-fee`
 }

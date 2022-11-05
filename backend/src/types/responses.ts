@@ -34,33 +34,33 @@ export interface OrderResponse {
     pickup: {
         eta: string,
         location: {
-        formatted_address: string,
-        coordinates: {
-            lat: number,
-            lon: number
-        }
+          formatted_address: string,
+          coordinates: {
+              lat: number,
+              lon: number
+          }
         },
         comment: string,
         contact_details: {
-        name: string,
-        phone_number: string,
-        send_tracking_link_sms: boolean
+          name: string,
+          phone_number: string,
+          send_tracking_link_sms: boolean
         }
     },
     dropoff: {
         eta: string,
         location: {
         formatted_address: string,
-        coordinates: {
-            lat: number,
-            lon: number
-        }
+          coordinates: {
+              lat: number,
+              lon: number
+          }
         },
         comment: string,
         contact_details: {
-        name: string,
-        phone_number: string,
-        send_tracking_link_sms: boolean
+          name: string,
+          phone_number: string,
+          send_tracking_link_sms: boolean
         }
     },
     scheduled_dropoff_time?: string,
@@ -71,22 +71,20 @@ export interface OrderResponse {
     },
     is_no_contact: boolean,
     merchant_order_reference_id?: string,
-    contents: [
-        {
-        count: number,
-        description: string,
-        identifier: string,
-        tags: [string]
+    contents: [{
+          count: number,
+          description: string,
+          identifier: string,
+          tags: [string]
         }
     ],
-    tips: [
-        {
+    tips: [{
         type: "pre_delivery_courier_tip",
         price: {
             amount: number,
             currency: string
         }
-        }
+      }
     ],
     price: {
         amount: number,
