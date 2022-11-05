@@ -41,6 +41,7 @@ export interface Item {
 export interface Order {
     _id:string,
     host: string,
+    pickup: string,
     orderStatus: {
         public: boolean,
         expires?: number

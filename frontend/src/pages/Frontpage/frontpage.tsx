@@ -10,6 +10,10 @@ const [restaurants, setRestaurants] = useState<Restaurant[]>([])
 const [error, setError] = useState<string | null>(null)
 
 useEffect(() => {
+    // const socket = (window as any).io('http://localhost:3002');
+    // socket.on('test1', (d: any) => {
+    //     console.log(d)
+    // })
   async function getRecipeData() {
     try{
         const json = await axios.get('http://localhost:8232/restaurants');

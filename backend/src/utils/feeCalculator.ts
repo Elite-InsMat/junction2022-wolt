@@ -1,5 +1,5 @@
 const feeCalculator = (baseFee : number, participants : number, costReduce : number) => {
-    let totalFee = baseFee * Math.pow(participants, 1-costReduce);
+    const totalFee = baseFee * Math.pow(participants, 0-costReduce);
     return totalFee
 };
 
