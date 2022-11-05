@@ -4,6 +4,9 @@ import { getOrders } from "./orders-service";
 export const orderRouter = express.Router();
 
 orderRouter.get('/', async (req, res) => {
-    const result = await getOrders()
+  if(!req.body.userId) {
+    res.status(400).send('Missing userId')
+  }
+    const result = await getOrders(req.body.userId)
     res.send(result)
   })
