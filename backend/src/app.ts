@@ -5,7 +5,7 @@ import { getCollections, startDb } from './database';
 import { orderRouter } from './orders/orders-handler';
 import { itemRouter } from './items/items-handler';
 import { restaurantRouter } from './restaurants/restaurant-handler';
-import { DatabaseCollections } from './types/database';
+import { DatabaseCollections } from './types/database-types';
 import http from 'http';
 import cors from 'cors';
 import { userRouter } from './users/users-handler';

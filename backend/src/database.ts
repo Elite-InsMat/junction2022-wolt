@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 import { database } from "./config";
-import { DatabaseCollections } from "./types/database";
+import { DatabaseCollections } from "./types/database-types";
 
 export const startDb = async () => {
     try {

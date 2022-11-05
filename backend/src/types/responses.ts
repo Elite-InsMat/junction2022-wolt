@@ -1,4 +1,4 @@
-import { Item } from "./database"
+import { Item } from "./database-types"
 
 export interface FeeResponse {
     created_at: string,

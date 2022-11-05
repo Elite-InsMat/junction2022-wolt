@@ -1,16 +1,16 @@
 import { ObjectId } from "mongodb";
 import { collections } from "../app"
-import { Order, User } from "../types/database";
+import { Order } from "../types/database-types";
 import { CreateOrderPayload, JoinOrderPayload } from "../types/payloads";
-import { allowedDistance, wolt } from "../config";
+import { allowedDistance } from "../config";
 import distanceBetweenPoints from "../utils/distanceBetweenPoints";
 
 export const getUserOrders = async (userId:string) => {
     return await collections.orders.find( { _id: userId }).toArray();
 }
 
-export const getOngoingOrders = async (userId:string) => {
-    const user = (await collections.users.findOne({_id:userId}))
+export const getNearbyOngoingOrders = async (userId:string) => {
+    const user = await collections.users.findOne({_id:userId})
 
     if(!user){
         throw Error('User missing')
@@ -60,16 +60,23 @@ export const createNewOrder = async (payload: CreateOrderPayload) => {
     }
     
     await collections.orders.insertOne(order)
+    return order._id
 }
 
 export const joinOrder = async (payload: JoinOrderPayload) => {
-    const order = await collections.orders.findOne({_id:payload.orderId})
+    const publicOrder = await collections.orders.findOne({_id:payload.orderId, "orderStatus.public":true})
 
-    if(!order) {
+    if(!publicOrder) {
         throw Error('Could not find any order')
     }
 
-    const participants = Object.keys(order.orderedItems)
+    if(publicOrder.orderStatus.expires){
+        if(publicOrder.orderStatus.expires < Date.now()){
+            throw Error('Order already expired')
+        }
+    }
+
+    const participants = Object.keys(publicOrder.orderedItems)
 
     if(participants.includes(payload.userId)){
         throw Error('User already in order')
@@ -78,7 +85,7 @@ export const joinOrder = async (payload: JoinOrderPayload) => {
     await collections.orders.updateOne({ _id: payload.orderId }, {
         $set: {
             orderedItems:{    
-                ...order.orderedItems,
+                ...publicOrder.orderedItems,
                 [payload.userId]: payload.items
             }
         }
