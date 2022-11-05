@@ -6,29 +6,29 @@ import './frontpage.scss'
 
 
 const FrontPage = () => {
-    const [restaurants, setRestaurants] = useState<Restaurant[]>([])
-    const [error, setError] = useState<string | null>(null)
+const [restaurants, setRestaurants] = useState<Restaurant[]>([])
+const [error, setError] = useState<string | null>(null)
 
-    useEffect(() => {
-        async function getRecipeData() {
-            try {
-                const json = await axios.get('http://localhost:8232/restaurants');
-                setRestaurants(json.data);
-            }
-            catch (err: any) {
-                setError(err.message);
-            }
-        }
+useEffect(() => {
+  async function getRecipeData() {
+    try{
+        const json = await axios.get('http://localhost:8232/restaurants');
+        setRestaurants(json.data);
+    }
+    catch(err: any){
+      setError(err.message);
+    }   
+  }
 
-        getRecipeData()
-    }, []);
-    if (error) {
+  getRecipeData()
+}, []);
+    if (error){
         return <p>{error}</p>
     }
-    else if (!restaurants) {
+    else if (!restaurants){
         return <p>Loading restaurants...</p>
     }
-    else {
+    else{
         return (
             <div>
                 <div>
@@ -40,7 +40,7 @@ const FrontPage = () => {
                     <h1>Find other amazing restaurants</h1>
                     <div className="center-div">
                         <div className="frontpage-restaurant-container">
-                            {restaurants.map((restaurant) => (<RestaurantComponent targetLink={`/restaurant?id=${restaurant._id}`} key={restaurant._id} text={restaurant.name} img={restaurant.coverImage} />))}
+                            {restaurants.map((restaurant) => (<RestaurantComponent key={restaurant._id} text={restaurant.name} img={restaurant.coverImage} />))}
                         </div>
                     </div>
                 </div>

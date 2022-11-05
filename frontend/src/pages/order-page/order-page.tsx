@@ -9,21 +9,33 @@ import Map from "../../components/Map/Map"
 const OrderPage = () => {
 
     const [orders, setOrders] = useState<Order[]>([]);
+    const [user, setUser] = useState<any>(null);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        async function getUser() {
+            try {
+                const json = await axios.get('http://localhost:8232/user', {data : {name : "John Doe"}});
+                setUser(json.data);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getUser()
+      }, []);
+
+      useEffect(() => {
         async function getRecipeData() {
           try{
-              const json = await axios.get('http://localhost:8232/orders');
+              const json = await axios.get('http://localhost:8232/orders', {data : {userId : user._id}});
               setOrders(json.data);
           }
           catch(err: any){
             setError(err.message);
           }   
         }
-      
         getRecipeData()
-      }, []);
+      }, [user]);
 
 
     return (
