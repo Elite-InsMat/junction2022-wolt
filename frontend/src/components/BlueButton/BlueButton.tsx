@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import "./BlueButtonStyles.scss"
 
 type Props = {
-    text : string,
-    onClick : () => void
+    text: string,
+    onClick: () => void
 }
 
-const BlueButton = ({ text, onClick } : Props) =>  {
+const BlueButton = ({ text, onClick }: Props) => {
 
-    return(
+    return (
         <div>
             <button className="bluebutton" onClick={() => onClick}>
                 <span className="text">
@@ -17,7 +17,7 @@ const BlueButton = ({ text, onClick } : Props) =>  {
             </button>
         </div>
     );
-    
+
 };
 
 export default BlueButton;
