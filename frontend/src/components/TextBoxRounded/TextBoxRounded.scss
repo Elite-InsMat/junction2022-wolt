@@ -1,0 +1,15 @@
+@import "../../themes.scss";
+
+.TextBoxRounded {
+    display: flex;
+    height: 20px;
+    width: 94%;
+    padding: 10px;
+    justify-content: left;
+    align-items: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 6px;
+    border-color: var(--primary-blue);
+    background-color: white;
+}
