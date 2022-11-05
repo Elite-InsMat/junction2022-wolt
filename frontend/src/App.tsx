@@ -9,8 +9,8 @@ const App = () => {
     <div className="App">
       <Routes>
         <Route path="/test" caseSensitive={false} element={<TestPage />} />
-        <Route path="/order" caseSensitive={false} element={<OrderPage />} />
-        <Route path="/" caseSensitive={false} element={<FrontPage />} />
+        {/*<Route path="/order" caseSensitive={false} element={<OrderPage />} />
+        <Route path="/" caseSensitive={false} element={<FrontPage />} />*/}
       </Routes>
     </div >
   );
