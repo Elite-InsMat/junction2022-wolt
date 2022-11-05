@@ -75,4 +75,29 @@ to generate mock data, navigate to [json-generator](https://json-generator.com/)
   	}
   }
 ]
+
+[
+  '{{repeat(5, 7)}}',
+  {
+    _id: '{{objectId()}}',
+    name: '{{random(\
+    ["burger"],\
+    ["burger2"],\
+    ["pizza1"],\
+    ["pizza2"],\
+    )}}',
+    description: 'asd',
+    price:'{{integer(1,10)}}',
+    restaurant:'{{objectId()}}',
+    coverImage: '{{random(\
+    ["https://i.imgur.com/5yKKhYl.jpg"],\
+    ["https://i.imgur.com/gInx4zx.jpg"],\
+    ["https://i.imgur.com/QDcxhGV.jpg"],\
+    ["https://i.imgur.com/NrYusJX.jpg"],\
+    ["https://i.imgur.com/I44m94t.jpg"],\
+    ["https://i.imgur.com/ndrpGvY.jpg"],\
+    ["https://i.imgur.com/wQZi5IQ.jpg"],\
+    )}}'
+  	}
+]
 ```

@@ -75,7 +75,7 @@ export interface WoltFeePayLoad {
 export interface CreateOrderPayload {
   public: boolean,
   expires?: number,
-  restaurant: string,
+  restaurantId: string,
   host: string
   items: string []
 }

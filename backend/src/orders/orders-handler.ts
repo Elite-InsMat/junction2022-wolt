@@ -28,9 +28,7 @@ orderRouter.post('/create', async (req: Request, res: Response, next: NextFuncti
     }
   
     await createNewOrder(order)
-  
-    const io = req.app.get('socket.io')
-
+    res.send('Order completed')
   } catch (err) {
     console.log(err)
     next(err)
@@ -44,7 +42,9 @@ orderRouter.get('/ongoing', async (req: Request, res: Response, next: NextFuncti
       res.status(400).send('Missing userId')
     }
 
-    const orders = getOngoingOrders(userId)
+    const orders = await getOngoingOrders(userId)
+
+    res.send(orders)
     
   } catch(err) {
     console.log(err)

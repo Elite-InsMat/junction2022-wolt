@@ -1,20 +1,48 @@
 import { ObjectId } from "mongodb";
-import axios from 'axios'
 import { collections } from "../app"
-import { Order } from "../types/database";
+import { Order, User } from "../types/database";
 import { CreateOrderPayload, JoinOrderPayload } from "../types/payloads";
-import { wolt } from "../config";
+import { allowedDistance, wolt } from "../config";
+import distanceBetweenPoints from "../utils/distanceBetweenPoints";
 
 export const getUserOrders = async (userId:string) => {
     return await collections.orders.find( { _id: userId }).toArray();
 }
 
 export const getOngoingOrders = async (userId:string) => {
-    const userLocation = (await collections.users.findOne({_id:userId}))?.location
-    const allOrders = await collections.orders.find().toArray()
+    const user = (await collections.users.findOne({_id:userId}))
+
+    if(!user){
+        throw Error('User missing')
+    }
+
+    if(!user.location){
+        throw Error('User location missing')
+    }
+
+    const allHosts = (await collections.orders.find().toArray()).map( order => order.host)
+    const allHostLocations = await collections.users.find({_id:{$in:allHosts}}).toArray()
+
+    const allNearbyHosts = allHostLocations.map( h => {
+        const distance = distanceBetweenPoints(h.location.coordinates,user.location.coordinates)
+        if(distance <= allowedDistance){
+            if(h._id){
+                return h._id
+            }
+        }
+    }) as string []
+
+    return await collections.orders.find({host:{$in: allNearbyHosts}}).toArray()
 }
 
 export const createNewOrder = async (payload: CreateOrderPayload) => {
+
+    const pickup = await collections.restaurants.findOne({_id: payload.restaurantId})
+
+    if(!pickup) {
+        throw Error('Cannot get pickup location!')
+    } 
+
     const order: Order = {
         _id: new ObjectId().toString(),
         host: payload.host,
@@ -24,7 +52,7 @@ export const createNewOrder = async (payload: CreateOrderPayload) => {
         orderedItems: {
             [payload.host]: payload.items
         },
-        pickup: payload.restaurant
+        pickup: pickup
     }
 
     if(payload.public && payload.expires) {
@@ -55,6 +83,4 @@ export const joinOrder = async (payload: JoinOrderPayload) => {
             }
         }
     })
-
-    const newFee = axios.get(wolt.feeUrl,{ data: {} })
 }
