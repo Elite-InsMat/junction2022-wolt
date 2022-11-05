@@ -15,6 +15,7 @@ export const database = {
 }
 
 export const costReduce = 0.5
+export const allowedDistance = 0.005
 
 export const wolt = {
     key: process.env.API_TOKEN_KEY,

@@ -1,0 +1,35 @@
+[
+    {
+      "_id": "6366c528c9a6777b91492b35",
+      "name": "John Doe",
+      "location": {
+        "friendlyName": "Pispalantie 14, 20540 Turku",
+        "coordinates": {
+          "lat": 60.46066,
+          "long": 22.2859
+        }
+      }
+    },
+    {
+      "_id": "6366c528b2333ddb0338d460",
+      "name": "Iplax Doe",
+      "location": {
+        "friendlyName": "Pispalantie 13, 20540 Turku",
+        "coordinates": {
+          "lat": 60.46366,
+          "long": 22.2259
+        }
+      }
+    },
+    {
+      "_id": "6366c52894823f4d55de3b48",
+      "name": "Joni Inkivaari",
+      "location": {
+        "friendlyName": "Pispalantie 12, 20540 Turku",
+        "coordinates": {
+          "lat": 60.46166,
+          "long": 22.2459
+        }
+      }
+    }
+]

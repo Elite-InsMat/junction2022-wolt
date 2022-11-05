@@ -1,0 +1,50 @@
+[
+  {
+    "_id": "6366b616f7c0ef860f02ebbe",
+    "name": "burger2",
+    "description": "asd",
+    "price": 3,
+    "restaurant": "6366b6162a789d4a14c11721",
+    "coverImage": "https://i.imgur.com/gInx4zx.jpg"
+  },
+  {
+    "_id": "6366b616dad956fe3e18f292",
+    "name": "burger2",
+    "description": "asd",
+    "price": 2,
+    "restaurant": "6366b61689d839110ce0e288",
+    "coverImage": "https://i.imgur.com/NrYusJX.jpg"
+  },
+  {
+    "_id": "6366b616115ecdeb9f6aff76",
+    "name": "burger",
+    "description": "asd",
+    "price": 10,
+    "restaurant": "6366b6161b7934cc1435b177",
+    "coverImage": "https://i.imgur.com/I44m94t.jpg"
+  },
+  {
+    "_id": "6366b616fa7b47a652351930",
+    "name": "burger",
+    "description": "asd",
+    "price": 7,
+    "restaurant": "6366b6165ba86023ef8fd407",
+    "coverImage": "https://i.imgur.com/5yKKhYl.jpg"
+  },
+  {
+    "_id": "6366b616ca8f6873c2bcf27c",
+    "name": "burger",
+    "description": "asd",
+    "price": 8,
+    "restaurant": "6366b6165da674f176720da2",
+    "coverImage": "https://i.imgur.com/QDcxhGV.jpg"
+  },
+  {
+    "_id": "6366b61657176ab5d1b0e8c4",
+    "name": "pizza2",
+    "description": "asd",
+    "price": 4,
+    "restaurant": "6366b616aa253475877d8e89",
+    "coverImage": "https://i.imgur.com/gInx4zx.jpg"
+  }
+]

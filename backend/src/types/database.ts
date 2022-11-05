@@ -9,9 +9,13 @@ export interface DatabaseCollections{
 
 export interface User {
     _id: string,
+    name:string
     location: {
-        lat: number,
-        long: number
+        friendlyName: string,
+        coordinates: {
+            lat: number,
+            long: number
+        }
     }
 }
 
@@ -29,19 +33,18 @@ export interface Restaurant {
 }
 
 export interface Item {
-    [restaurantId: string]: {
         _id:string,
         name:string,
         description: string,
         price: number,
         coverImage: string
-    }
+        restaurantId: string
 }
 
 export interface Order {
     _id:string,
     host: string,
-    pickup: string,
+    pickup: Restaurant,
     orderStatus: {
         public: boolean,
         expires?: number
