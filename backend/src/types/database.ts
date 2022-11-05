@@ -5,6 +5,14 @@ export interface DatabaseCollections{
     orders: Collection<Order>
 }
 
+interface User {
+    _id: string,
+    location: {
+        lat: number,
+        long: number
+    }
+}
+
 interface Restaurant {
     _id:string,
     name:string,
@@ -21,6 +29,7 @@ interface Restaurant {
 interface Order {
     _id:string,
     orderStatus: string,
-    participants: string [],
-    orderdItems: string [],
+    orderedItems: {
+        [userId:string] : string []
+    }
 }

@@ -6,6 +6,7 @@ import { orderRouter } from './orders/orders-handler';
 import { restaurantRouter } from './restaurants/restaurant-handler';
 import { DatabaseCollections } from './types/database';
 import http from 'http';
+import cors from 'cors';
 
 export let collections: DatabaseCollections;
 
@@ -26,6 +27,9 @@ const startServer = async () => {
     console.log('Socket on!')
   })
 
+  //Middlewares
+  app.use(cors())
+  
   //Routers
   app.use('/restaurants',restaurantRouter)
   app.use('/orders',orderRouter)
