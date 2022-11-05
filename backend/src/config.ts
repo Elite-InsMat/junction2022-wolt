@@ -2,7 +2,6 @@ import { config } from 'dotenv';
 config();
 
 export const port = process.env.PORT ? process.env.PORT : 8232
-export const merchantId = process.env.MERCHANT_ID
 
 export const database = {
     mongoUri: process.env.MONGO_URI || '',
@@ -10,6 +9,13 @@ export const database = {
     collections: {
         restaurants: 'restaurants',
         orders:'orders',
-        users:'users'
+        users:'users',
+        items:'items'
     }
+}
+
+export const wolt = {
+    key: process.env.API_TOKEN_KEY,
+    baseUrl: process.env.API_BASEURL,
+    merchantId: process.env.MERCHANT_ID
 }
