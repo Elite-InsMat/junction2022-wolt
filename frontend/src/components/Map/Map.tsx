@@ -233,6 +233,8 @@ const Map = ({ restaurantLocation, targetLocation }: Props) => {
                 icon: "../images/icon.png"
             })
 
+
+
             new google.maps.Polyline({
                 path: [restaurantLocation, targetLocation],
                 strokeColor: '#009DE0',
@@ -256,7 +258,6 @@ const Map = ({ restaurantLocation, targetLocation }: Props) => {
             bounds.extend(restaurantLocation)
             bounds.extend(targetLocation)
             map.fitBounds(bounds)
-
 
 
 
