@@ -5,7 +5,7 @@ import './styles.scss';
 type Props = {
     orderName: string,
     text: string,
-    img: string
+    img: string,
 }
 
 const OngoingOrderSelectionComponent = ({ orderName, text, img }: Props) => {
