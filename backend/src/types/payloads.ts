@@ -1,8 +1,10 @@
+import { Item } from "./database-types"
+
 export interface WoltOrderPayload {
     pickup: {
       location: {
         formatted_address: string,
-        coordinates: {
+        coordinates?: {
           lat: number,
           lon: number
         }
@@ -17,7 +19,7 @@ export interface WoltOrderPayload {
     dropoff: {
       location: {
         formatted_address: string,
-        coordinates: {
+        coordinates?: {
           lat: number,
           lon: number
         }
@@ -34,38 +36,40 @@ export interface WoltOrderPayload {
       phone_number: string,
       url: string
     },
-    merchant_order_reference_id?: string,
+    merchant_order_reference_id: string | null | undefined,
     is_no_contact: boolean,
     contents: [
       {
         count: number,
         description: string,
         identifier: string,
-        tags: [string]
+        tags: string []
       }
     ],
     tips: [
       {
-        type: "pre_delivery_courier_tip"
+        type: string
         price: {
           amount: number,
           currency: string
         }
       }
-    ],
+    ] | [],
     min_preparation_time_minutes: number,
-    scheduled_dropoff_time?: number
+    scheduled_dropoff_time: number | null
 }
 
 export interface WoltFeePayLoad {
   pickup: {
-      location: {
+    formatted_address:string,
+      location?: {
           lat:number,
           long:number
       }
   },
   dropoff: {
-      location: {
+    formatted_address:string,
+      location?: {
           lat:number,
           long:number
       }
@@ -77,13 +81,13 @@ export interface CreateOrderPayload {
   expires?: number,
   restaurantId: string,
   host: string
-  items: string []
+  items: Item []
 }
 
 export interface JoinOrderPayload {
   userId: string,
   orderId: string,
-  items: string []
+  items: Item []
 }
 export interface ItemsPayload {
     restaurantId: string

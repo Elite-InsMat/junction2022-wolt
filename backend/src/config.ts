@@ -24,3 +24,8 @@ export const wolt = {
     orderUrl:`${process.env.API_BASEURL}merchants/${process.env.MERCHANT_ID}/delivery-order`,
     feeUrl: `${process.env.API_BASEURL}merchants/${process.env.MERCHANT_ID}/delivery-fee`
 }
+
+export const google = {
+    key:process.env.GOOGLE_KEY,
+    baseUrl:process.env.GOOGLE_BASEURL
+}

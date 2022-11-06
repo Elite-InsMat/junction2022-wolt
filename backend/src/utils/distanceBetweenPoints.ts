@@ -1,7 +1,4 @@
-type Coordinate = {
-    lat: number,
-    long: number
-}
+import { Coordinate } from "../types/util-types";
 
 const distanceBetweenPoints = (point1 : Coordinate, point2 : Coordinate) => {
     const x = point2.lat - point1.lat;

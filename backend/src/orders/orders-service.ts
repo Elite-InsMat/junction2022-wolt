@@ -1,9 +1,12 @@
 import { ObjectId } from "mongodb";
 import { collections } from "../app"
 import { Order } from "../types/database-types";
-import { CreateOrderPayload, JoinOrderPayload } from "../types/payloads";
-import { allowedDistance } from "../config";
+import { CreateOrderPayload, JoinOrderPayload, WoltOrderPayload } from "../types/payloads";
+import { allowedDistance, wolt } from "../config";
 import distanceBetweenPoints from "../utils/distanceBetweenPoints";
+import middlePointCalculator from "../utils/middlePoint";
+import axios from "axios";
+import { pickupAndDropoffPoints } from "../utils/pick-and-drop";
 
 export const getUserOrders = async (userId:string) => {
     return await collections.orders.find( { _id: userId }).toArray();
@@ -32,7 +35,7 @@ export const getNearbyOngoingOrders = async (userId:string) => {
         }
     }) as string []
 
-    return await collections.orders.find({host:{$in: allNearbyHosts}}).toArray()
+    return await collections.orders.find({host:{$in: allNearbyHosts}, "orderStatus.public":true }).toArray()
 }
 
 export const createNewOrder = async (payload: CreateOrderPayload) => {
@@ -90,4 +93,75 @@ export const joinOrder = async (payload: JoinOrderPayload) => {
             }
         }
     })
+}
+
+export const createWoltOrder = async (orderId:string) => {
+
+    if(!orderId){
+        throw Error('No order id')
+    }
+
+    const order: Order | null = await collections.orders.findOne({_id:orderId})
+    if(!order){
+        throw Error('No order found')
+    }
+    const host = await collections.users.findOne({ _id:order.host})
+
+    if(!host){
+        throw Error('No host found')
+    }
+
+    const participants = await collections.users.find({ _id: {$in:Object.keys(order.orderedItems)}}).toArray();
+
+    const pointData = await pickupAndDropoffPoints(orderId,collections)
+
+    const payload: WoltOrderPayload = {
+        pickup: {
+            location: {
+                formatted_address:pointData.pickupAddress,
+            },
+            comment: "Nice comment there!",
+            contact_details: {
+                name: "NAME",
+                phone_number: "+358123456789",
+                send_tracking_link_sms: false
+            }
+        },
+        dropoff: {
+            location: {
+                formatted_address:pointData.dropoffAddress,
+            },
+            contact_details: {
+                name: host.name,
+                phone_number: "+358123456789",
+                send_tracking_link_sms: false
+            },
+            comment: 'Nice comment here!'
+        },
+        customer_support: {
+            email: "string",
+            phone_number: "string",
+            url: "string"
+        },
+        merchant_order_reference_id: null,
+        is_no_contact: false,
+        contents: [
+            {
+                count: 1,
+                description: 'plastic bag',
+                identifier: '12345',
+                tags: ['alcohol']
+            }
+        ],
+        tips: [],
+        min_preparation_time_minutes: 10*participants.length,
+        scheduled_dropoff_time: null
+    }
+
+    const config = {
+        headers: { Authorization: `Bearer ${wolt.key}` }
+    };
+
+    const res = await axios.post(wolt.orderUrl, payload, config)
+    return (res.data)
 }

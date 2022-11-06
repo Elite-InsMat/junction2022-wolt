@@ -10,6 +10,7 @@ import http from 'http';
 import cors from 'cors';
 import { userRouter } from './users/users-handler';
 import bodyParser from 'body-parser';
+import { feesRouter } from './fees/fees-handler';
 
 export class BadRequestError extends Error {}
 export let collections: DatabaseCollections;
@@ -43,6 +44,7 @@ const startServer = async () => {
   app.use('/orders',orderRouter)
   app.use('/items', itemRouter)
   app.use('/user', userRouter)
+  app.use('/fees',feesRouter)
 
   // Error handler
   app.use((error: Error, request: Request, response: Response, next: NextFunction) => {

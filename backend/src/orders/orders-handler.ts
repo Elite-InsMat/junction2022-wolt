@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response  } from 'express';
-import { CreateOrderPayload, JoinOrderPayload } from '../types/payloads';
-import { getUserOrders, createNewOrder, joinOrder, getNearbyOngoingOrders } from "./orders-service";
+import { CreateOrderPayload, JoinOrderPayload, WoltOrderPayload } from '../types/payloads';
+import { getUserOrders, createNewOrder, joinOrder, getNearbyOngoingOrders, createWoltOrder } from "./orders-service";
 
 export const orderRouter = express.Router();
 
@@ -66,6 +66,25 @@ orderRouter.post('/join', async (req: Request, res: Response, next: NextFunction
     const io = req.app.get('socket.io')
 
   } catch (err) {
+    console.log(err)
+    next(err)
+  }
+})
+
+orderRouter.post('/create-delivery-order', async (req: Request, res: Response, next: NextFunction) => {
+  const orderId: string = req.body.orderId
+  
+  try{
+    if(!orderId) {
+      res.status(400).send('Missing order')
+      return
+    }
+
+    const result = await createWoltOrder(orderId)
+
+    res.send(result)
+
+  } catch(err) {
     console.log(err)
     next(err)
   }

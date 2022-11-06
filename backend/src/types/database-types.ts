@@ -50,6 +50,6 @@ export interface Order {
         expires?: number
     },
     orderedItems: {
-        [userId:string] : string []
+        [userId:string] : Item []
     }
 }
