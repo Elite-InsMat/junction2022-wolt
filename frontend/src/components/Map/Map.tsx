@@ -3,6 +3,9 @@ import { Wrapper } from "@googlemaps/react-wrapper";
 import { google_key } from "../../config";
 
 
+const API = process.env.REACT_APP_GOOGLE_API_KEY ?? "";
+
+
 type Coordinates = {
     lat: number,
     lng: number
@@ -234,6 +237,8 @@ const Map = ({ restaurantLocation, targetLocation }: Props) => {
                 icon: "../images/icon.png"
             })
 
+
+
             new google.maps.Polyline({
                 path: [restaurantLocation, targetLocation],
                 strokeColor: '#009DE0',
@@ -257,7 +262,6 @@ const Map = ({ restaurantLocation, targetLocation }: Props) => {
             bounds.extend(restaurantLocation)
             bounds.extend(targetLocation)
             map.fitBounds(bounds)
-
 
 
 
