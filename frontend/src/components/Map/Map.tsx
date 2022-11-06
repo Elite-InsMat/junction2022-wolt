@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { Wrapper } from "@googlemaps/react-wrapper";
 
 
+const API = process.env.REACT_APP_GOOGLE_API_KEY ?? "";
+
+
 type Coordinates = {
     lat: number,
     lng: number
@@ -270,7 +273,7 @@ const Map = ({ restaurantLocation, targetLocation }: Props) => {
 
 
     return (
-        <Wrapper apiKey="AIzaSyCERD97-1_qC1K4N-oBYVHlol-W49kAc_s">
+        <Wrapper apiKey={API}>
             <div style={{ height: "600px", width: "100%" }} ref={ref} />
             {flag && <span></span>}
         </Wrapper>
