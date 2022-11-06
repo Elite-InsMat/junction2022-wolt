@@ -5,11 +5,12 @@ import { getCollections, startDb } from './database';
 import { orderRouter } from './orders/orders-handler';
 import { itemRouter } from './items/items-handler';
 import { restaurantRouter } from './restaurants/restaurant-handler';
-import { DatabaseCollections } from './types/database';
+import { DatabaseCollections } from './types/database-types';
 import http from 'http';
 import cors from 'cors';
 import { userRouter } from './users/users-handler';
 import bodyParser from 'body-parser';
+import { feesRouter } from './fees/fees-handler';
 
 export class BadRequestError extends Error {}
 export let collections: DatabaseCollections;
@@ -43,6 +44,7 @@ const startServer = async () => {
   app.use('/orders',orderRouter)
   app.use('/items', itemRouter)
   app.use('/user', userRouter)
+  app.use('/fees',feesRouter)
 
   // Error handler
   app.use((error: Error, request: Request, response: Response, next: NextFunction) => {

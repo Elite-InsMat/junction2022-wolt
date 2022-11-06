@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response  } from 'express';
-import { CreateOrderPayload, JoinOrderPayload } from '../types/payloads';
-import { getUserOrders, createNewOrder, joinOrder, getOngoingOrders } from "./orders-service";
+import { CreateOrderPayload, JoinOrderPayload, WoltOrderPayload } from '../types/payloads';
+import { getUserOrders, createNewOrder, joinOrder, getNearbyOngoingOrders, createWoltOrder } from "./orders-service";
 
 export const orderRouter = express.Router();
 
@@ -27,8 +27,8 @@ orderRouter.post('/create', async (req: Request, res: Response, next: NextFuncti
       return
     }
   
-    await createNewOrder(order)
-    res.send('Order completed')
+    const newOrderId = await createNewOrder(order)
+    res.send(newOrderId)
   } catch (err) {
     console.log(err)
     next(err)
@@ -42,7 +42,7 @@ orderRouter.post('/ongoing', async (req: Request, res: Response, next: NextFunct
       res.status(400).send('Missing userId')
     }
 
-    const orders = await getOngoingOrders(userId)
+    const orders = await getNearbyOngoingOrders(userId)
 
     res.send(orders)
     
@@ -66,6 +66,25 @@ orderRouter.post('/join', async (req: Request, res: Response, next: NextFunction
     const io = req.app.get('socket.io')
 
   } catch (err) {
+    console.log(err)
+    next(err)
+  }
+})
+
+orderRouter.post('/create-delivery-order', async (req: Request, res: Response, next: NextFunction) => {
+  const orderId: string = req.body.orderId
+  
+  try{
+    if(!orderId) {
+      res.status(400).send('Missing order')
+      return
+    }
+
+    const result = await createWoltOrder(orderId)
+
+    res.send(result)
+
+  } catch(err) {
     console.log(err)
     next(err)
   }

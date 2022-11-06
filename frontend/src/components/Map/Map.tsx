@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Wrapper } from "@googlemaps/react-wrapper";
+import { google_key } from "../../config";
 
 
 const API = process.env.REACT_APP_GOOGLE_API_KEY ?? "";
@@ -273,7 +274,7 @@ const Map = ({ restaurantLocation, targetLocation }: Props) => {
 
 
     return (
-        <Wrapper apiKey={API}>
+        <Wrapper apiKey={google_key||''}>
             <div style={{ height: "600px", width: "100%" }} ref={ref} />
             {flag && <span></span>}
         </Wrapper>
